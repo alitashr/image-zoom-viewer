@@ -1,0 +1,25 @@
+.react-transform-wrapper.transform-component-module_wrapper__1_Fgj {
+  width: 100% !important;
+  margin: auto !important;
+  display: inline-block;
+  cursor: grab;
+}
+
+img.zoom-image {
+  max-height: 100vh;
+}
+
+.tools {
+  position: absolute;
+  bottom: 3rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: fit-content;
+  z-index: 2;
+}
+.tools > button {
+  width: 3rem;
+  height: 3rem;
+  margin: 0.5rem;
+}

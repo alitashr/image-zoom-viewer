@@ -1,0 +1,44 @@
+
+@import "../node_modules/@blueprintjs/core/src/blueprint.scss";
+
+$layer-1-raised:0px 1px 1px rgba(16, 22, 26, 0.2), 0px 0px 0px rgba(16, 22, 26, 0.1);
+$layer-2-raised:0px 2px 6px rgba(16, 22, 26, 0.2), 0px 1px 1px rgba(16, 22, 26, 0.2), 0px 0px 0px rgba(16, 22, 26, 0.1);
+$layer-2-raised-panel-btn:0px -2px 4px 0px rgba(0, 0, 0, 0.1);
+$layer-3-temp-nav:0px 8px 24px rgba(16, 22, 26, 0.2), 0px 2px 4px rgba(16, 22, 26, 0.2), 0px 0px 0px rgba(16, 22, 26, 0.1);
+$layer-4-popout:0px 18px 46px rgba(16, 22, 26, 0.2), 0px 4px 8px rgba(16, 22, 26, 0.2), 0px 0px 0px rgba(16, 22, 26, 0.1);
+
+$inset-box-shodow: inset 0 0 0 2px var(--bg-secondary);
+$btn-border-radius:0.25rem;
+
+
+:root {
+  --brand1: #00855D ;
+  --brand2: #00AB78 ;
+  --brand3: #00D092 ;
+  --brand4: #2ED8A5 ;
+  --brand5: #5CE1B9 ; 
+  
+
+  --bg-primary:#F7F8F8;
+  --bg-primary-hover:#EFF0F2;
+  --bg-primary-active:#E5E7E9;
+  --bg-secondary:#EEF0F1;
+  --text-primary:#939A9F;
+  --text-primary-muted:#C7CBCE;
+  --text-primary-active:#30363B;
+  --text-primary-hover:#7C858B;
+  --utility-fade:	linear-gradient(180deg, rgba(247, 248, 248, 0) 0%, var(--bg-primary) 100%);
+  --utility-input-fade: linear-gradient(270deg, var(--bg-secondary) 0%, rgba(196, 196, 196, 0) 100%);
+
+  
+}
+
+.App {
+  position: relative;
+  height: 100vh;
+}
+
+
+@import "./Components/Zoom-Image-Viewer/ZoomImageViwer";
+@import "./Components/Slider/Slider";
+@import "./Components/AtSpinner/spinner";

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <title>Zoom Image Viewer</title>
+    <script>
+      // v2dev/tepcpaper => v2dev/explorug.html?page=tepcpaper => v3dev/build
+      function getJsonFromUrl(url) {
+        if (!url) url = window.location.search;
+        var query = url.substr(1);
+        var result = {};
+        query.split("&").forEach(function (part) {
+          var item = part.split("=");
+          result[item[0]] = decodeURIComponent(item[1]);
+        });
+        return result;
+      }
+
+      if (window.location.origin.substr(0, 5) !== "https" && window.location.origin.substr(0, 4) === "http") {
+        const loc = window.location.origin.replace("http", "https");
+        //window.location.replace(loc)
+      }
+
+      var design, defaultZoom;
+      const jsonUrl = getJsonFromUrl();
+      console.log("jsonUrl", jsonUrl);
+      design = jsonUrl.design;
+      defaultZoom = jsonUrl.defaultZoom;
+
+      if (design) {
+        sessionStorage.setItem("design", design);
+      }
+      if (defaultZoom) {
+        sessionStorage.setItem("defaultZoom", defaultZoom);
+      }
+
+      // const path = window.location.pathname.split("/")
+      // path.pop();
+
+      //window.location.href = window.location.origin + path.join("/");
+    </script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
