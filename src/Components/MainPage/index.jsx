@@ -8,7 +8,7 @@ const MainPage = () => {
    
   useEffect(() => {
     const img =
-      sessionStorage.getItem("design") || "https://website-bin.s3.amazonaws.com/explorug/client/studiop/BEAT+MODA.png";
+      sessionStorage.getItem("design") || "./images/BEAT+MODA_compressed.jpg";
     setImgSrc(img);
     console.log("useEffect -> img", img);
    

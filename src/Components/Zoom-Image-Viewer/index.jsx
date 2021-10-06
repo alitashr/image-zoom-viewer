@@ -17,7 +17,7 @@ const zoomOut = {
 
 const ZoomImageViewer = (props) => {
   const { imageSrc, defaultZoom } = props;
-  const [currentZoom, setCurrentZoom] = useState(0);
+  const [currentZoom, setCurrentZoom] = useState(8);
 
   const [loading, setLoading] = useState(true);
   const imageRef = useRef(null);
@@ -36,7 +36,7 @@ const ZoomImageViewer = (props) => {
     image.onload = () => {
       try {
         imageRef.current.src = image.src;
-        zoomRef.current.centerView();
+        //zoomRef.current.centerView();
         window.transformREF = zoomRef;
 
         setLoading(false);
@@ -50,44 +50,48 @@ const ZoomImageViewer = (props) => {
     if (!defaultZoom || !parseFloat(defaultZoom)) return;
     console.log("useEffect -> defaultZoom", defaultZoom);
     if (defaultZoom >= options.minScale && defaultZoom <= options.maxScale) {
-      setCurrentZoom(defaultZoom);
+      //setCurrentZoom(defaultZoom);
     }
   }, [defaultZoom]);
   return (
     <>
-      <TransformWrapper
-        className={classNames('at-zoom-image-viewer-transformwrapper',{ hidden: !imageRef })}
-        id="at-viewer-wrapper"
-        options={options}
-        wheel={wheel}
-        zoomIn={zoomIn}
-        zoomOut={zoomOut}
-        ref={zoomRef}
-      >
-        {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
-          <React.Fragment>
-            <AtSlider
-              isIdle={false}
-              value={currentZoom}
-              onRelease={(val) => {
-                const zoomval = Math.abs(currentZoom - val);
-                if (val < currentZoom) {
-                  zoomOut(zoomval);
-                } else {
-                  zoomIn(zoomval);
-                }
-                setCurrentZoom(val);
-              }}
-              min={0}
-              max={3}
-              stepSize={1}
-            />
-            <TransformComponent>
-              <img className="zoom-image" src={""} ref={imageRef} alt="test" />
-            </TransformComponent>
-          </React.Fragment>
-        )}
-      </TransformWrapper>
+      <div className={classNames("at-zoom-image-viewer-transformwrapper", { hidden: loading })}>
+        <TransformWrapper
+          id="at-viewer-wrapper"
+          options={options}
+          wheel={wheel}
+          zoomIn={zoomIn}
+          zoomOut={zoomOut}
+          ref={zoomRef}
+          initialScale={currentZoom}
+          initialPositionX={0}
+          initialPositionY={0}
+        >
+          {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
+            <React.Fragment>
+              <AtSlider
+                isIdle={false}
+                value={currentZoom>options.maxScale? options.maxScale: currentZoom}
+                onRelease={(val) => {
+                  const zoomval = Math.abs(currentZoom - val);
+                  if (val < currentZoom) {
+                    zoomOut(zoomval);
+                  } else {
+                    zoomIn(zoomval);
+                  }
+                  setCurrentZoom(val);
+                }}
+                min={options.minScale}
+                max={options.maxScale}
+                stepSize={1}
+              />
+              <TransformComponent>
+                <img className="zoom-image" src={""} ref={imageRef} alt="test" />
+              </TransformComponent>
+            </React.Fragment>
+          )}
+        </TransformWrapper>
+      </div>
       {
         <AtSpinnerOverlay
           show={loading}
